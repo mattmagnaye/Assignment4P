@@ -130,4 +130,20 @@ bool containsStraight(const int hand[]) {
 
     return false;
 
+    bool containsFullHouse(const int hand[]) {
+        return containsPair(hand) && containsThreeOfaKind(hand);
+    }
+
+    bool containsFourOfaKind(const int hand[])
+    map<int, int> cardCount;
+    for(int i = 0; i < HAND_SIZE; i++) {
+        cardCount[hand[i]]++;
+    }
+
+    for(auto it : cardCount) {
+        if(it.second == 4) {
+            return true;
+        }
+    }
+    return false;
 }
