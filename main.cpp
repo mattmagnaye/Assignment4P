@@ -11,6 +11,7 @@
 *
 */
 #include <iostream>
+#include <map>
 using namespace std;
 
 // Declaring necessary constants and values per as instruction
@@ -101,4 +102,10 @@ bool containsThreeOfaKind(const int hand[]) {
     return false;
 }
 
-bool 
+/*
+* Function: containsThreeOfaKind
+* This function checks if the poker hand contains a straight.
+*/
+bool containsStraight(const int hand[]) {
+    map<int, int> cardCount;
+}
