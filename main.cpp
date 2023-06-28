@@ -29,11 +29,22 @@ int main() {
         cin >> hand[i];
     }
 
-    
+    if (containsTwoPair(hand) {
+        cout << "Two Pair!";
+    })
+    else if (containsPair(hand)) {
+        cout << "Pair!";
+    } else {
+        cout << "High Card!";
+    }
 
     return 0
 }
 
+/* 
+* Function: containsPair
+* This function checks if the poker hand contains a pair.
+*/
 bool containsPair(const int hand[]) {
     map<int, int> cardCount;
     for(int i = 0; i < HAND_SIZE; i++) {
@@ -47,4 +58,23 @@ bool containsPair(const int hand[]) {
     }
     return false;
 
+}
+
+/*
+* Function: containsTwoPair
+* This function checks if the poker hand contains two pairs.
+*/
+bool containsTwoPair(const int hand[]) {
+    map<int, int> cardCount;
+    for(int i = 0; i++) {
+        cardCount[hand[i]]++;
+    }
+
+    int pairCount = 0;
+    for(auto it : cardCount) {
+        if(it.second == 2) {
+            pairCount++;
+        }
+    }
+    return pairCount == 2;
 }
