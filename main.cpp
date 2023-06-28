@@ -29,9 +29,12 @@ int main() {
         cin >> hand[i];
     }
 
-    if (containsTwoPair(hand) {
+    if (containsThreeOfaKind(hand)) {
+        cout << "Three of a Kind!";
+    }
+    else if (containsTwoPair(hand)) {
         cout << "Two Pair!";
-    })
+    }
     else if (containsPair(hand)) {
         cout << "Pair!";
     } else {
@@ -78,3 +81,24 @@ bool containsTwoPair(const int hand[]) {
     }
     return pairCount == 2;
 }
+
+
+/*
+* Function: containsThreeOfaKind
+* This function checks if the poker hand contains three of a kind.
+*/
+bool containsThreeOfaKind(const int hand[]) {
+    map<int, int> cardCount;
+    for(int i = 0; i < HAND_SIZE; i++) {
+        cardCount[hand[i]]++;
+    }
+
+    for(auto it : cardCount) {
+        if(it.second == 3) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool 
