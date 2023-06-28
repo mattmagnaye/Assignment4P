@@ -19,6 +19,13 @@ const int HAND_SIZE = 5;
 const int LOWEST_NUM = 2;
 const int HIGHEST_NUM = 9;
 
+bool containsPair(const int hand[]);
+bool containsTwoPair(const int hand[]);
+bool containsThreeOfaKind(const int hand[]);
+bool containsStraight(const int hand[]);
+bool containsFullHouse(const int hand[]);
+bool containsFourOfaKind(const int hand[]);
+
 
 int main() {
 
@@ -29,7 +36,14 @@ int main() {
         cout << "Card " << (i+1) << ": ";
         cin >> hand[i];
     }
-    if (containsStraight(hand)) {
+
+    if (containsFourOfaKind(hand)) {
+        cout << "Four of a kind!";
+    }
+    else if (containsFullHouse(hand)) {
+        cout << "Full House!";
+    }
+    else if (containsStraight(hand)) {
         cout << "Straight!";
     }
     else if (containsThreeOfaKind(hand)) {
@@ -44,7 +58,7 @@ int main() {
         cout << "High Card!";
     }
 
-    return 0
+    return 0;
 }
 
 /* 
@@ -72,7 +86,7 @@ bool containsPair(const int hand[]) {
 */
 bool containsTwoPair(const int hand[]) {
     map<int, int> cardCount;
-    for(int i = 0; i++) {
+    for(int i = 0; i < HAND_SIZE; i++) {
         cardCount[hand[i]]++;
     }
 
@@ -127,14 +141,22 @@ bool containsStraight(const int hand[]) {
         }
         prev = it->first;
     }
-
     return false;
+}
 
+/*
+* Function: containsFullHouse
+* This function checks if the poker hand contains a full house.
+*/   
     bool containsFullHouse(const int hand[]) {
         return containsPair(hand) && containsThreeOfaKind(hand);
     }
 
-    bool containsFourOfaKind(const int hand[])
+/*
+* Function: containsFourOfaKind
+* This function checks if the poker hand contains four of a kind.
+*/   
+    bool containsFourOfaKind(const int hand[]){
     map<int, int> cardCount;
     for(int i = 0; i < HAND_SIZE; i++) {
         cardCount[hand[i]]++;
@@ -144,6 +166,7 @@ bool containsStraight(const int hand[]) {
         if(it.second == 4) {
             return true;
         }
-    }
+        
     return false;
+    }
 }
