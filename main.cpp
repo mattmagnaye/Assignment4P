@@ -29,8 +29,10 @@ int main() {
         cout << "Card " << (i+1) << ": ";
         cin >> hand[i];
     }
-
-    if (containsThreeOfaKind(hand)) {
+    if (containsStraight(hand)) {
+        cout << "Straight!";
+    }
+    else if (containsThreeOfaKind(hand)) {
         cout << "Three of a Kind!";
     }
     else if (containsTwoPair(hand)) {
@@ -108,4 +110,24 @@ bool containsThreeOfaKind(const int hand[]) {
 */
 bool containsStraight(const int hand[]) {
     map<int, int> cardCount;
+    for(int i = 0; i < HAND_SIZE; i++) {
+        cardCount[hand[i]]++;
+    }
+
+    auto it = cardCount.begin();
+    int prev = it->first, count = 0;
+    for(; it != cardCount.end(); it++) {
+        if(it->first == prev+1) {
+            count++;
+        } else {
+            count = 0;
+        }
+        if(count == 4) {
+            return true;
+        }
+        prev = it->first;
+    }
+
+    return false;
+
 }
